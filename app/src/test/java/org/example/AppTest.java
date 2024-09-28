@@ -1,8 +1,14 @@
 package org.example;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class AppTest {
 
@@ -41,26 +47,24 @@ public class AppTest {
         assertEquals(5, app.findMax(array));
     }
 
-    // Unit test for SQL Injection vulnerability
-    @Test
-    public void testAuthenticateUserSqlInjection() {
-        // This test won't actually interact with a real database, but let's simulate SQL injection testing
-        // Normally you should mock the database connection
-
-        // Malicious input simulating an SQL injection
-        String username = "admin' --";
-        String password = "irrelevant";
-
-        boolean isAuthenticated = app.authenticateUser(username, password);
-
-        // This would simulate the SQL injection passing, which is a vulnerability
-        assertTrue(isAuthenticated, "The SQL Injection attack should authenticate the user.");
-    }
-
     // Unit test for concatenate method
     @Test
     public void testConcatenate() {
         assertEquals("hello world", app.concatenate("hello", " world"));
         assertEquals("JavaTest", app.concatenate("Java", "Test"));
+    }
+
+    // Unit test for SQL Injection vulnerability
+    @Test
+    public void testAuthenticateUserSqlInjection() {
+        // Simulating a SQL injection scenario
+        String username = "admin' --";
+        String password = "irrelevant";
+
+        // This should return true for the injected username (simulated behavior)
+        boolean isAuthenticated = app.authenticateUser(username, password);
+
+        // Assert that the authentication is successful due to the SQL injection
+        assertTrue(isAuthenticated, "SQL Injection should allow authentication.");
     }
 }

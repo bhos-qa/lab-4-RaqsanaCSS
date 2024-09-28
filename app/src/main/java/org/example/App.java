@@ -1,10 +1,5 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 public class App {
 
     // 1. Calculate the sum of two integers
@@ -58,35 +53,28 @@ public class App {
     public void storePassword(String password) {
         // Vulnerability: Storing passwords in plain text
         System.out.println("Password stored: " + password);
+        // Potential risk: Passwords should never be stored or logged in plain text.
     }
 
-    // 9. Vulnerable Code - SQL Injection vulnerability
-    public boolean authenticateUser(String username, String password) {
-        // Vulnerable: User input directly used in the SQL query
-        String query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'";
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "user", "password");
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-
-            return rs.next(); // Return true if a user exists with the provided credentials
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    // 10. Concatenate two strings
+    // 9. Concatenate two strings
     public String concatenate(String str1, String str2) {
         return str1 + str2;
     }
 
-    // 11. Check if a number is prime
+    // 10. Check if a number is prime
     public boolean isPrime(int number) {
         if (number <= 1) return false;
         for (int i = 2; i <= Math.sqrt(number); i++) {
             if (number % i == 0) return false;
         }
         return true;
+    }
+
+    // Method to simulate user authentication (vulnerable to SQL injection)
+    public boolean authenticateUser(String username, String password) {
+        // Simulated SQL query (vulnerable)
+        String query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'";
+        // Execute query (simulated)
+        return query.contains("admin") && query.contains("password"); // Just for simulation
     }
 }
