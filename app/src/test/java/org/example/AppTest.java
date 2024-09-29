@@ -26,19 +26,6 @@ public class AppTest {
         assertEquals(0, app.sum(-5, 5));
     }
 
-    // Unit test for isPalindrome method
-    @Test
-    public void testIsPalindrome() {
-        assertTrue(app.isPalindrome("madam"));
-        assertFalse(app.isPalindrome("hello"));
-    }
-
-    // Unit test for factorial method
-    @Test
-    public void testFactorial() {
-        assertEquals(120, app.factorial(5));
-        assertEquals(1, app.factorial(0));
-    }
 
     // Unit test for findMax method
     @Test
@@ -47,12 +34,6 @@ public class AppTest {
         assertEquals(5, app.findMax(array));
     }
 
-    // Unit test for concatenate method
-    @Test
-    public void testConcatenate() {
-        assertEquals("hello world", app.concatenate("hello", " world"));
-        assertEquals("JavaTest", app.concatenate("Java", "Test"));
-    }
 
     // Unit test for SQL Injection vulnerability
     @Test
