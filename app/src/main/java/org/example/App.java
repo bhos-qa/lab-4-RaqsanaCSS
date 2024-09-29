@@ -103,4 +103,10 @@ public class App {
         // In a real-world scenario, this would be a major security risk, as attackers could easily access hardcoded credentials
         return "admin".equals(username) && "password123".equals(password);
     }
+    // 6. Process a payment (Vulnerable)
+    public String processPayment(String cardNumber, double amount) {
+        // Vulnerable: Storing sensitive data directly in a log
+        System.out.println("Processing payment with card: " + cardNumber);
+        return "Payment processed for $" + amount;
+    }
 }
