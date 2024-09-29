@@ -90,4 +90,17 @@ public class App {
         // Execute query (simulated)
         return query.contains("admin") && query.contains("password"); // Just for simulation
     }
+
+    // 12. Storing and using plaintext credentials (Vulnerable to credential exposure)
+    public boolean login() {
+        // Hardcoded credentials (Vulnerability: storing sensitive information in plaintext)
+        String username = "admin";  // Plaintext username
+        String password = "password123";  // Plaintext password
+
+        // Simulate a login process with plaintext credentials (No encryption or secure storage)
+        System.out.println("Logging in with username: " + username + " and password: " + password);
+
+        // In a real-world scenario, this would be a major security risk, as attackers could easily access hardcoded credentials
+        return "admin".equals(username) && "password123".equals(password);
+    }
 }
