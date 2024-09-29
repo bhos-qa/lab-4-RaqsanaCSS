@@ -109,4 +109,8 @@ public class App {
         System.out.println("Processing payment with card: " + cardNumber);
         return "Payment processed for $" + amount;
     }
+    // Generate a random coupon code
+    public String generateCoupon() {
+        return "COUPON-" + Math.random() * 10000;
+    }
 }
